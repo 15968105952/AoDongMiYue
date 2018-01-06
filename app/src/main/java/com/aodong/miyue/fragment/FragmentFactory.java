@@ -1,0 +1,39 @@
+package com.aodong.miyue.fragment;
+
+/**
+ * Created by syh11 on 2017/12/15.
+ */
+
+import com.aodong.miyue.base.BaseFragment;
+
+import java.util.HashMap;
+
+
+public class FragmentFactory {
+
+    private static HashMap<Integer, BaseFragment> mBaseFragments = new HashMap<Integer, BaseFragment>();
+    public static BaseFragment createFragment(int pos) {
+
+        BaseFragment baseFragment = mBaseFragments.get(pos);
+
+        if (baseFragment == null) {
+            switch (pos) {
+                case 0:
+                    baseFragment = new UserfulChooseFragment();//精选
+                    break;
+                case 1:
+                    baseFragment = new ConcernFragment();//关注
+                    break;
+                case 2:
+                    baseFragment = new NewPersonFragment();//新人
+                    break;
+                case 3:
+                    baseFragment = new NearbyFragment();//附近
+                    break;
+            }
+            mBaseFragments.put(pos, baseFragment);
+        }
+        return baseFragment;
+    }
+
+}
