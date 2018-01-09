@@ -134,6 +134,7 @@ public class NearbyFragment extends BaseFragment implements PullToRefreshListene
     //用户下拉刷新加载数据
     @Override
     public void onRefresh() {
+        if(null!=rlBeautifulGirl)
         rlBeautifulGirl.postDelayed(new Runnable() {
             @Override
             public void run() {

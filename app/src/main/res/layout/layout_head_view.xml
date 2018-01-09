@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="192dp"
     android:orientation="horizontal"
    >
     <LinearLayout
@@ -12,73 +12,71 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:background="@drawable/ic_launcher_background"
-        android:layout_margin="10dp"
+        android:background="@drawable/library_banner"
+        android:layout_margin="4dp"
         >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_mark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="常用标签"
-                />
-            <TextView
-                android:id="@+id/tv_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="在线/勿扰"
-                />
-        </RelativeLayout>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
             android:orientation="horizontal"
+            android:padding="3dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/is_or_not_online_background"
             >
-            <TextView
-                android:id="@+id/tv_nick_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="昵称"
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_yellow"
                 />
             <TextView
-                android:id="@+id/tv_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="年龄"
+                android:text="已认证"
+                android:layout_marginLeft="2dp"
+                android:textSize="@dimen/label"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/tab_unchecked_color"
+
                 />
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+      <LinearLayout
         android:id="@+id/rl_name2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_margin="10dp"
+        android:layout_margin="4dp"
         android:orientation="vertical"
-        android:background="@drawable/ic_launcher_background"
+        android:background="@drawable/library_banner"
         >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_mark2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="常用标签"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:padding="3dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/is_or_not_online_background"
+            >
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_yellow"
                 />
             <TextView
-                android:id="@+id/tv_state2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="在线/勿扰"
+                android:text="已认证"
+                android:layout_marginLeft="2dp"
+                android:textSize="@dimen/label"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/tab_unchecked_color"
+
                 />
-        </RelativeLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

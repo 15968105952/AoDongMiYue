@@ -2,74 +2,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/tab_unchecked_color"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fl_content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        >
-    </FrameLayout>
-
-    <RadioGroup
-        android:id="@+id/rg_home"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:background="@color/tab_checked_bg"
-        android:weightSum="4" >
-
-        <RadioButton
-            android:id="@+id/rb_find"
-            style="@style/tab_style"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/tab_home_bg"
-            android:text="@string/find" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
 
-        <!--<RadioButton-->
-        <!--style="@style/tab_style"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:drawableTop="@drawable/tab_brand_bg"-->
-        <!--android:text="@string/brand" />-->
+        <RelativeLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/tab_unchecked_color">
 
-        <RadioButton
-            android:id="@+id/rb_videoshow"
-            style="@style/tab_style"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/tab_shopping_bg"
-            android:text="@string/videoshow" />
+            <RelativeLayout
+                android:id="@+id/rb_find"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="3dp"
+                android:clickable="true">
 
-        <RadioButton
-            android:id="@+id/rb_message"
-            style="@style/tab_style"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/tab_more_bg"
-            android:text="@string/message" />
-        <RadioButton
-            android:id="@+id/rb_my"
-            style="@style/tab_style"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/tab_search_bg"
-            android:text="@string/my" />
-    </RadioGroup>
+                <ImageView
+                    android:id="@+id/find_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/tab_home_bg" />
+
+                <TextView
+                    android:id="@+id/find_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="29dp"
+                    android:text="@string/find"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/tab9" />
+            </RelativeLayout>
+            <!--<RadioButton-->
+            <!--style="@style/tab_style"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:drawableTop="@drawable/tab_brand_bg"-->
+            <!--android:text="@string/brand" />-->
+            <RelativeLayout
+                android:id="@+id/rb_videoshow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="94dp"
+                android:layout_marginTop="3dp"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/videoshow_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/tab_shopping_bg" />
+
+                <TextView
+                    android:id="@+id/videoshow_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="29dp"
+                    android:text="@string/videoshow"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/tab9" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rb_message"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="94dp"
+                android:layout_marginTop="3dp"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/message_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/tab_more_bg" />
+                <TextView
+                    android:id="@+id/message_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="29dp"
+                    android:text="@string/message"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/tab9" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rb_my"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="3dp"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/my_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/tab_search_bg" />
+
+                <TextView
+                    android:id="@+id/my_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="29dp"
+                    android:text="@string/my"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/tab9" />
+            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:text="@string/kuaiyue"
+
+    <ImageView
+        android:id="@+id/iv_kuaiyue"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/btn_yue"
         android:gravity="center"
-        android:textColor="@color/marker_text_bg"
-        android:background="@drawable/kuaiyue_background"
-        android:layout_marginBottom="35dp"
-        />
+         />
 </RelativeLayout>

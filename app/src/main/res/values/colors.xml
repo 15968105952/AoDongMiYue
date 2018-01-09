@@ -152,4 +152,11 @@
     <color name="bg_color_input_divide">#cbd0d8</color>
     <color name="bg_media_player_controller">#7f000000</color>
     <color name="color_blue_238efa">#238efa</color>
+    <color name="is_or_not_online_color">#20000000</color>
+    <color name="is_or_not_man_color">#ff6666</color>
+    <color name="tab_back_bg_color">#ffffff</color>
+    <color name="green">#90F73D</color>
+    <color name="is_not_online">#F7573D</color>
+    <color name="color_is_man">#668FFF</color>
+
 </resources>

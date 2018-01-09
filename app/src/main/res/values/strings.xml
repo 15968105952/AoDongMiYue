@@ -360,4 +360,6 @@
     <string name="nrtc_setting_voe_dtx">人声检测</string>
     <string name="play">播放</string>
     <string name="i_know">我知道了</string>
+    <string name="nickname_home_page">天线宝宝</string>
+    <string name="is_on_line">在线</string>
 </resources>

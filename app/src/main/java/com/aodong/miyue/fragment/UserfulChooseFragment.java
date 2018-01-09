@@ -4,6 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -14,8 +15,6 @@ import com.aodong.miyue.base.BaseFragment;
 import com.aodong.miyue.carouselfigure.StartRoll;
 import com.aodong.miyue.listener.PullToRefreshListener;
 import com.aodong.miyue.view.PullToRefreshRecyclerView;
-import com.aodong.miyue.wanyiyun.activity.VideoActivity;
-import com.aodong.miyue.wanyiyun.manager.SessionHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +45,7 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
     protected View initView() {
         View view = View.inflate(context, R.layout.fragment_user_choose, null);
         ButterKnife.inject(this, view);
-        //添加HeaderView
+      /*  //添加HeaderView
         View headView = View.inflate(context, R.layout.layout_head_view, null);
         //头布局中的子控件设置点击事件
         LinearLayout  rl1 = (LinearLayout) headView.findViewById(R.id.rl_name1);
@@ -62,11 +61,11 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(),"rl2",Toast.LENGTH_SHORT).show();
-                 /*跳转到通讯录列表界面*/
+                 *//*跳转到通讯录列表界面*//*
                 SessionHelper.startP2PSession(getContext(), "13938217043");
             }
         });
-        rlBeautifulGirl.addHeaderView(headView);
+        rlBeautifulGirl.addHeaderView(headView);*/
         //设置EmptyView（没有数据时的默认布局）
         View emptyView = View.inflate(context, R.layout.layout_empty_view, null);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -83,6 +82,7 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
         //进行轮播
         StartCarrousel();
         data = new ArrayList<>();
+        data.clear();
         data.add("苹果");
         data.add("香蕉");
         data.add("葡萄");
@@ -95,7 +95,40 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
 
             @Override
             public void convert(ViewHolder holder, String s, final int position) {
-
+                String s1 = data.get(position);
+                ImageView view = holder.getView(R.id.iv_picture);
+                if("苹果".equals(s1)){
+                   view.setBackgroundResource(R.drawable.pic2);
+                     /*设置是否在线背景*/
+                    holder.setViewBackgroundResource(R.id.iv_is_online_or_not,R.drawable.circle_shape_green);
+                    holder.setText(R.id.tv_is_online_or_not,getResources().getString(R.string.is_on_line));
+                    holder.setViewBackgroundResource(R.id.ll_sex,R.drawable.is_or_not_man_background);
+                    holder.setImageResource(R.id.iv_sex,R.drawable.icon_woman);
+//                    view.setImageBitmap(BitmapFactory.decodeStream());
+//                    view.setImageURI(Uri.parse("https://pic4.zhimg.com/03b2d57be62b30f158f48f388c8f3f33_b.png"));
+//                   holder.setImageResource(R.id.iv_picture,R.drawable.pic5);
+                }else if("香蕉".equals(s1)){
+                    view.setBackgroundResource(R.drawable.pic3);
+                     /*设置是否在线背景*/
+                    holder.setViewBackgroundResource(R.id.iv_is_online_or_not,R.drawable.circle_shape_green);
+                    holder.setText(R.id.tv_is_online_or_not,getResources().getString(R.string.is_on_line));
+                    holder.setViewBackgroundResource(R.id.ll_sex,R.drawable.is_or_not_man_background);
+                    holder.setImageResource(R.id.iv_sex,R.drawable.icon_woman);
+                }else if("葡萄".equals(s1)){
+                    view.setBackgroundResource(R.drawable.pic4);
+                     /*设置是否在线背景*/
+                    holder.setViewBackgroundResource(R.id.iv_is_online_or_not,R.drawable.circle_shape_green);
+                    holder.setText(R.id.tv_is_online_or_not,getResources().getString(R.string.is_on_line));
+                    holder.setViewBackgroundResource(R.id.ll_sex,R.drawable.is_or_not_man_background);
+                    holder.setImageResource(R.id.iv_sex,R.drawable.icon_woman);
+                }else if("荔枝".equals(s1)){
+                    view.setBackgroundResource(R.drawable.pic5);
+                    /*设置是否在线背景*/
+                    holder.setViewBackgroundResource(R.id.iv_is_online_or_not,R.drawable.circle_shape_red);
+                    holder.setText(R.id.tv_is_online_or_not,"离线");
+                    holder.setViewBackgroundResource(R.id.ll_sex,R.drawable.is_man_background);
+                    holder.setImageResource(R.id.iv_sex,R.drawable.icon_man);
+                }
                 //设置文本信息
 //                holder.setText(R.id.textView, s);
                 //设置图片
@@ -126,7 +159,7 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
         //设置是否开启上拉加载
         rlBeautifulGirl.setLoadingMoreEnabled(true);
         //设置是否开启下拉刷新
-        rlBeautifulGirl.setPullRefreshEnabled(true);
+        rlBeautifulGirl.setPullRefreshEnabled(false);
         //设置是否显示上次刷新的时间
         rlBeautifulGirl.displayLastRefreshTime(true);
         //设置刷新回调
@@ -162,6 +195,10 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
                 rlBeautifulGirl.setRefreshComplete();
                 //模拟没有数据的情况
                 data.clear();
+                data.add("苹果");
+                data.add("香蕉");
+                data.add("葡萄");
+                data.add("荔枝");
                 adapter.notifyDataSetChanged();
 //                int size = data.size();
 //                for (int i = size; i < size + 4; i++) {
@@ -177,7 +214,7 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
         rlBeautifulGirl.postDelayed(new Runnable() {
             @Override
             public void run() {
-                i++;
+               /* i++;
                 if (i >= 4) {
                     //这个地方可以设置数据全部加载完毕以后，提示用户没有更多数据的提示信息
 //                    recyclerView.addFooterView(footerView);
@@ -190,7 +227,14 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
                 int size = data.size();
                 for (int i = size; i < size + 6; i++) {
                     data.add("" + i + i + i + i);
-                }
+                }*/
+                data.clear();
+                data.add("苹果");
+                data.add("香蕉");
+                data.add("葡萄");
+                data.add("荔枝");
+                rlBeautifulGirl.setLoadMoreComplete();
+
                 adapter.notifyDataSetChanged();
 
             }

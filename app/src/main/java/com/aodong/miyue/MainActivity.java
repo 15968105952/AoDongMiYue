@@ -1,14 +1,18 @@
 package com.aodong.miyue;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aodong.miyue.base.BaseActivity;
-import com.aodong.miyue.base.BaseFragment;
+import com.aodong.miyue.adapter.mViewPagerAdapter;
+import com.aodong.miyue.base.ToolBarActivity;
 import com.aodong.miyue.chat.ReminderItem;
 import com.aodong.miyue.chat.ReminderManager;
 import com.aodong.miyue.chat.SystemMessageUnreadManager;
@@ -23,6 +27,7 @@ import com.aodong.miyue.wanyiyun.manager.SessionHelper;
 import com.aodong.miyue.wanyiyun.modle.Extras;
 import com.aodong.miyue.wanyiyun.preferences.Preferences;
 import com.aodong.miyue.wanyiyun.preferences.UserPreferences;
+import com.gyf.barlibrary.ImmersionBar;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.AbortableFuture;
@@ -41,26 +46,17 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
-
-public class MainActivity extends BaseActivity implements ReminderManager.UnreadNumChangedCallback{
+public class MainActivity extends ToolBarActivity implements ReminderManager.UnreadNumChangedCallback{
 
     private static final String EXTRA_APP_QUIT = "APP_QUIT";
-    @InjectView(R.id.fl_content)
-    FrameLayout flContent;
-    @InjectView(R.id.rb_find)
-    RadioButton rbFind;
-    @InjectView(R.id.rb_videoshow)
-    RadioButton rbVideoshow;
-    @InjectView(R.id.rb_message)
-    RadioButton rbMessage;
-    @InjectView(R.id.rb_my)
-    RadioButton rbMy;
-    @InjectView(R.id.rg_home)
-    RadioGroup rgHome;
-    private List<BaseFragment> fragments = new ArrayList<BaseFragment>();
+
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private ViewPager viewPager;
+    private TextView[] name = new TextView[4];
+    private ImageView[] icon = new ImageView[4];
+    private RelativeLayout[] tabLayout = new RelativeLayout[4];
+    private ImmersionBar mImmersionBar;
     private static final String TAG = "MainActivity";
     private AbortableFuture<LoginInfo> loginRequest;
 
@@ -86,49 +82,98 @@ public class MainActivity extends BaseActivity implements ReminderManager.Unread
                 // 可以在此保存LoginInfo到本地，下次启动APP做自动登录用
             };
 
-
     @Override
-    public int getLayoutResId() {
-        return R.layout.activity_main;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initViews();
+        initData();
+        inject();
     }
 
-    @Override
-    protected void initView() {
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
-        rgHome.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int radioButtonId) {
-                int index = 0;
-                switch (radioButtonId){
-                    case R.id.rb_find:
-                        index = 0;
-                        break;
-                    case R.id.rb_videoshow:
-                        index=1;
-                        break;
-                    case R.id.rb_message:
-                        index = 2;
-                        break;
-                    case R.id.rb_my:
-                        index = 3;
-                        break;
-                }
+    private void initViews() {
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        /*tab名字*/
+        name[0] = (TextView) findViewById(R.id.find_name);
+        name[1] = (TextView) findViewById(R.id.videoshow_name);
+        name[2] = (TextView) findViewById(R.id.message_name);
+        name[3] = (TextView) findViewById(R.id.my_name);
+        /*tab图标*/
+        icon[0] = (ImageView) findViewById(R.id.find_icon);
+        icon[1] = (ImageView) findViewById(R.id.videoshow_icon);
+        icon[2] = (ImageView) findViewById(R.id.message_icon);
+        icon[3] = (ImageView) findViewById(R.id.my_icon);
+        icon[1].setEnabled(false);
+        icon[2].setEnabled(false);
+        icon[3].setEnabled(false);
+        tabLayout[0] = (RelativeLayout) findViewById(R.id.rb_find);
+        tabLayout[1] = (RelativeLayout) findViewById(R.id.rb_videoshow);
+        tabLayout[2] = (RelativeLayout) findViewById(R.id.rb_message);
+        tabLayout[3] = (RelativeLayout) findViewById(R.id.rb_my);
+        FindFragment findFragment = new FindFragment();
+        VideoShowFragment videoshowFragment = new VideoShowFragment();
+        MessageFragment messageFragment=new MessageFragment();
+        MyFragment myFragment = new MyFragment();
+        fragmentList.add(findFragment);
+        fragmentList.add(videoshowFragment);
+        fragmentList.add(messageFragment);
+        fragmentList.add(myFragment);
+        viewPager.setAdapter(new mViewPagerAdapter(getSupportFragmentManager(), fragmentList));
+        viewPager.setOffscreenPageLimit(4);
+    }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_content,fragments.get(index)).commit();
+
+
+    private void inject() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setTabColor(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
+        for (int i = 0; i < 4; i++) {
+            final int j = i;
+            final int p = i;
+            tabLayout[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  /*  if (p == 1) {
+                        EventBus.getDefault().post(new OrderRefreshEvent("刷新~"));
+                    }*/
+                    icon[j].setEnabled(true);
+                    viewPager.setCurrentItem(j, false);
+                }
+            });
+        }
     }
 
-    @Override
+
+    private void setTabColor(int position) {
+        if (position > 3) {
+            return;
+        }
+        for (int i = 0; i < 4; i++) {
+            icon[i].setEnabled(false);
+            name[i].setTextColor(getResources().getColor(R.color.color_grey_666666));
+        }
+        icon[position].setEnabled(true);
+        name[position].setTextColor(getResources().getColor(R.color.color_black_333333));
+    }
+
+
+
     protected void initData() {
-//        login();
-        fragments.add(new FindFragment());
-        fragments.add(new VideoShowFragment());
-        fragments.add(new MessageFragment());
-        fragments.add(new MyFragment());
-        rgHome.check(R.id.rb_find);
-        /*显示消息数量*/
+ /*显示消息数量*/
         registerMsgUnreadInfoObserver(true);
         registerSystemMessageObservers(true);
         requestSystemMessageUnreadCount();
@@ -137,6 +182,7 @@ public class MainActivity extends BaseActivity implements ReminderManager.Unread
         onParseIntent();
         //监听是否强制下线
         registerObservers(true);
+
 
     }
 
