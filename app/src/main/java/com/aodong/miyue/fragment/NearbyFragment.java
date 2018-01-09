@@ -3,7 +3,6 @@ package com.aodong.miyue.fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.aodong.miyue.R;
@@ -40,7 +39,7 @@ public class NearbyFragment extends BaseFragment implements PullToRefreshListene
     protected View initView() {
         View view = View.inflate(context, R.layout.fragment_concern, null);
         ButterKnife.inject(this, view);
-        //添加HeaderView
+       /* //添加HeaderView
         View headView = View.inflate(context, R.layout.layout_head_view, null);
         //头布局中的子控件设置点击事件
         LinearLayout  rl1 = (LinearLayout) headView.findViewById(R.id.rl_name1);
@@ -57,7 +56,7 @@ public class NearbyFragment extends BaseFragment implements PullToRefreshListene
                 Toast.makeText(getContext(),"rl2",Toast.LENGTH_SHORT).show();
             }
         });
-        rlBeautifulGirl.addHeaderView(headView);
+        rlBeautifulGirl.addHeaderView(headView);*/
         //设置EmptyView（没有数据时的默认布局）
         View emptyView = View.inflate(context, R.layout.layout_empty_view, null);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,

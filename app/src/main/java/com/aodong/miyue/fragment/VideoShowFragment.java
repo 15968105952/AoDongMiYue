@@ -1,10 +1,10 @@
 package com.aodong.miyue.fragment;
 
 import android.net.Uri;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aodong.miyue.R;
@@ -22,60 +22,49 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-
-
 /**
  * Created by wangdh on 2016/8/25.
  */
 public class VideoShowFragment extends BaseFragment implements PullToRefreshListener {
 
+    @InjectView(R.id.page_name)
+    TextView pageName;
     @InjectView(R.id.rl_beautiful_girl)
     PullToRefreshRecyclerView rlBeautifulGirl;
-    private ModeAdapter adapter;
     private List<String> data;
-    private int i = 0;
+    private ModeAdapter adapter;
 
     @Override
     protected View initView() {
-        View view = View.inflate(context, R.layout.fragment_concern, null);
+        View view = View.inflate(context, R.layout.fragment_video_show, null);
         ButterKnife.inject(this, view);
-        //添加HeaderView
-        View headView = View.inflate(context, R.layout.layout_video_show,null);
-        //头布局中的子控件设置点击事件
-        LinearLayout  rl1 = (LinearLayout) headView.findViewById(R.id.rl_name1);
-        LinearLayout  rl2 = (LinearLayout) headView.findViewById(R.id.rl_name2);
-        SimpleDraweeView headImage1 = (SimpleDraweeView) headView.findViewById(R.id.headImage1);
-        SimpleDraweeView headImage2 = (SimpleDraweeView) headView.findViewById(R.id.headImage2);
-        headImage1.setImageURI(Uri.parse("https://pic4.zhimg.com/03b2d57be62b30f158f48f388c8f3f33_b.png"));
-        headImage2.setImageURI(Uri.parse("https://pic4.zhimg.com/03b2d57be62b30f158f48f388c8f3f33_b.png"));
-//        headImage1.setImageResource(R.drawable.room_cover_50);
-        rl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(),"rl1",Toast.LENGTH_SHORT).show();
-            }
-        });
-        rl2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(),"rl2",Toast.LENGTH_SHORT).show();
-            }
-        });
-        rlBeautifulGirl.addHeaderView(headView);
+        pageName.setText(getResources().getString(R.string.videoshow));
+        /*设置recycleview和空布局*/
+        setPullToRefreshRecyclerViewAndEmptyView();
+        return view;
+    }
+
+    private void setPullToRefreshRecyclerViewAndEmptyView() {
         //设置EmptyView（没有数据时的默认布局）
         View emptyView = View.inflate(context, R.layout.layout_empty_view, null);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
         rlBeautifulGirl.setEmptyView(emptyView);
         //设置列表的样式
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rlBeautifulGirl.setLayoutManager(layoutManager);
-        return view;
     }
 
     @Override
     protected void initData() {
+       /*设置适配器*/
+        setdapter();
+    }
+
+    private void setdapter() {
         data = new ArrayList<>();
+        data.clear();
         data.add("苹果");
         data.add("香蕉");
         data.add("葡萄");
@@ -84,13 +73,15 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
         data.add("火龙果");
         data.add("西瓜");
         //创建适配器，参数为1.上下文    2.布局id   3.当前item的position
-        adapter = new ModeAdapter<String>(getContext(), R.layout.item_mode, data) {
+        adapter = new ModeAdapter<String>(getContext(), R.layout.fragment_video_show_item, data) {
 
             @Override
             public void convert(ViewHolder holder, String s, final int position) {
-
+                SimpleDraweeView sd=holder.getView(R.id.headImage);
+                sd.setImageURI(Uri.parse("https://pic4.zhimg.com/03b2d57be62b30f158f48f388c8f3f33_b.png"));
                 //设置文本信息
 //                holder.setText(R.id.textView, s);
+
                 //设置图片
                 // holder.setImageResource(R.id.iv,)
 
@@ -105,7 +96,7 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
                 //holder.setViewBackgroundResource();
 
                 // 设置点击事件
-                holder.setOnclickListener(R.id.activity_main, new View.OnClickListener() {
+                holder.setOnclickListener(R.id.ll_video_show_item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(context, "我是第" + position + "个item", Toast.LENGTH_SHORT).show();
@@ -124,9 +115,9 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
         rlBeautifulGirl.displayLastRefreshTime(true);
         //设置刷新回调
         rlBeautifulGirl.setPullToRefreshListener(this);
+        //主动触发下拉刷新操作
+        //recyclerView.onRefresh();
     }
-
-
 
 
     @Override
@@ -135,7 +126,6 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
         ButterKnife.reset(this);
     }
 
-    //用户下拉刷新加载数据
     @Override
     public void onRefresh() {
         rlBeautifulGirl.postDelayed(new Runnable() {
@@ -144,6 +134,10 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
                 rlBeautifulGirl.setRefreshComplete();
                 //模拟没有数据的情况
                 data.clear();
+                data.add("苹果");
+                data.add("香蕉");
+                data.add("葡萄");
+                data.add("荔枝");
                 adapter.notifyDataSetChanged();
 //                int size = data.size();
 //                for (int i = size; i < size + 4; i++) {
@@ -159,7 +153,7 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
         rlBeautifulGirl.postDelayed(new Runnable() {
             @Override
             public void run() {
-                i++;
+               /* i++;
                 if (i >= 4) {
                     //这个地方可以设置数据全部加载完毕以后，提示用户没有更多数据的提示信息
 //                    recyclerView.addFooterView(footerView);
@@ -172,10 +166,18 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
                 int size = data.size();
                 for (int i = size; i < size + 6; i++) {
                     data.add("" + i + i + i + i);
-                }
+                }*/
+                data.clear();
+                data.add("苹果");
+                data.add("香蕉");
+                data.add("葡萄");
+                data.add("荔枝");
+                rlBeautifulGirl.setLoadMoreComplete();
+
                 adapter.notifyDataSetChanged();
 
             }
         }, 3000);
     }
 }
+

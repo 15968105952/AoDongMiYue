@@ -49,11 +49,11 @@
 
     <!--下划线-->
     <style name="underline">
-        <item name="android:layout_height">2dp</item>
+        <item name="android:layout_height">3.5dp</item>
         <item name="android:layout_width">26dp</item>
-        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:background">@color/colorAccent</item>
+        <item name="android:background">@drawable/select_image_background</item>
     </style>
     <!--tab字体设置-->
     <style name="tab_text">
@@ -62,5 +62,28 @@
         <item name="android:textSize">18sp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/color_upload_normal</item>
+    </style>
+    <!--精选标签背景及自己设置-->
+    <style name="tab_background">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/label</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/tab_unchecked_color</item>
+        <item name="android:background">@drawable/square_white_bg</item>
+        <item name="android:padding">1dp</item>
+    </style>
+    <!--视频秀标签背景及自己设置-->
+    <style name="videoshow_tab_background">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/label</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/color_black_333333</item>
+        <item name="android:background">@drawable/videoshow_tab_background</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
     </style>
 </resources>

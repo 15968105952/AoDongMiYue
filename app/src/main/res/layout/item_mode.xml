@@ -16,34 +16,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/pic2"
             />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_margin="3dp"
-        android:background="@drawable/is_or_not_online_background"
-        >
-        <ImageView
-            android:id="@+id/iv_is_online_or_not"
-            android:layout_width="5dp"
-            android:layout_height="5dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/circle_shape_green"
-            />
-        <TextView
-            android:id="@+id/tv_is_online_or_not"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="在线"
-            android:layout_marginLeft="2dp"
-            android:textSize="@dimen/label10"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/tab_unchecked_color"
-
-            />
-    </LinearLayout>
+        <include layout="@layout/is_online_or_not"></include>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,38 +76,20 @@
        >
      <TextView
          android:id="@+id/tv1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
+         style="@style/tab_background"
          android:text="人很美"
-         android:padding="1dp"
-         android:gravity="center"
-         android:textSize="@dimen/label"
-         android:background="@drawable/square_white_bg"
-         android:textColor="@color/tab_unchecked_color"
         />
        <TextView
            android:id="@+id/tv2"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
            android:text="很会聊"
-           android:padding="1dp"
-           android:gravity="center"
+           style="@style/tab_background"
            android:layout_marginLeft="4dp"
-           android:textSize="@dimen/label"
-           android:background="@drawable/square_white_bg"
-           android:textColor="@color/tab_unchecked_color"
            />
        <TextView
            android:id="@+id/tv3"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           style="@style/tab_background"
            android:text="身材超好"
-           android:padding="1dp"
-           android:gravity="center"
-           android:background="@drawable/square_white_bg"
            android:layout_marginLeft="4dp"
-           android:textSize="@dimen/label"
-           android:textColor="@color/tab_unchecked_color"
            >
      </TextView>
    </LinearLayout>

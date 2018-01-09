@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/color_gray">
+
+    <include layout="@layout/head_toolbar"></include>
     <com.aodong.miyue.view.PullToRefreshRecyclerView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:id="@+id/rl_beautiful_girl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></com.aodong.miyue.view.PullToRefreshRecyclerView>

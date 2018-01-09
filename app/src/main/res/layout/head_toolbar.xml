@@ -2,15 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/white">
-
-    <Button
-        android:id="@+id/back_btn"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/back_icon" />
+    android:background="@color/tab_unchecked_color">
 
     <TextView
         android:id="@+id/page_name"
@@ -18,12 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:textColor="@color/black"
+        android:textColor="@color/color_black_333333"
         android:textSize="17sp"
         android:textStyle="bold" />
-
-    <ImageView
-        style="@style/grey_image_divider"
-        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
