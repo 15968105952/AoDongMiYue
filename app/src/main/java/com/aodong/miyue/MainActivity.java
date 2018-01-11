@@ -11,8 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aodong.miyue.activity.KuaiYueActivity;
 import com.aodong.miyue.adapter.mViewPagerAdapter;
-import com.aodong.miyue.base.ToolBarActivity;
+import com.aodong.miyue.base.BaseActivity;
 import com.aodong.miyue.chat.ReminderItem;
 import com.aodong.miyue.chat.ReminderManager;
 import com.aodong.miyue.chat.SystemMessageUnreadManager;
@@ -46,8 +47,11 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends ToolBarActivity implements ReminderManager.UnreadNumChangedCallback{
+
+public class MainActivity extends BaseActivity implements ReminderManager.UnreadNumChangedCallback {
 
     private static final String EXTRA_APP_QUIT = "APP_QUIT";
 
@@ -86,6 +90,7 @@ public class MainActivity extends ToolBarActivity implements ReminderManager.Unr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
         initViews();
         initData();
         inject();
@@ -112,7 +117,7 @@ public class MainActivity extends ToolBarActivity implements ReminderManager.Unr
         tabLayout[3] = (RelativeLayout) findViewById(R.id.rb_my);
         FindFragment findFragment = new FindFragment();
         VideoShowFragment videoshowFragment = new VideoShowFragment();
-        MessageFragment messageFragment=new MessageFragment();
+        MessageFragment messageFragment = new MessageFragment();
         MyFragment myFragment = new MyFragment();
         fragmentList.add(findFragment);
         fragmentList.add(videoshowFragment);
@@ -121,7 +126,6 @@ public class MainActivity extends ToolBarActivity implements ReminderManager.Unr
         viewPager.setAdapter(new mViewPagerAdapter(getSupportFragmentManager(), fragmentList));
         viewPager.setOffscreenPageLimit(4);
     }
-
 
 
     private void inject() {
@@ -169,7 +173,6 @@ public class MainActivity extends ToolBarActivity implements ReminderManager.Unr
         icon[position].setEnabled(true);
         name[position].setTextColor(getResources().getColor(R.color.color_black_333333));
     }
-
 
 
     protected void initData() {
@@ -254,8 +257,6 @@ public class MainActivity extends ToolBarActivity implements ReminderManager.Unr
     }
 
 
-
-
     /********聊天部分监听*********/
     private void registerObservers(boolean register) {
         NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(userStatusObserver, register);
@@ -326,9 +327,8 @@ public class MainActivity extends ToolBarActivity implements ReminderManager.Unr
     }
 
 
-
     private void login() {
-        final String account ="1824902907";
+        final String account = "1824902907";
         final String token = "mazhuang123";
         /*// 登录
         LoginInfo info = new LoginInfo("13938217043", "mazhuang123"); // config...
@@ -392,5 +392,10 @@ public class MainActivity extends ToolBarActivity implements ReminderManager.Unr
     @Override
     public void onUnreadNumChanged(ReminderItem item) {
 
+    }
+
+    @OnClick(R.id.iv_kuaiyue)
+    public void onClick() {
+        startActivity(KuaiYueActivity.class,false);
     }
 }

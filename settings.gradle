@@ -1,1 +1,1 @@
-include ':app', ':faceunity', ':jrmfneteaselib', ':uikit'
+include ':app', ':faceunity', ':jrmfneteaselib', ':uikit', ':library', ':cardview'

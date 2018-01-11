@@ -1,9 +1,12 @@
 package com.aodong.miyue.fragment;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
     TextView pageName;
     @InjectView(R.id.rl_beautiful_girl)
     PullToRefreshRecyclerView rlBeautifulGirl;
+    @InjectView(R.id.back_btn)
+    Button backBtn;
     private List<String> data;
     private ModeAdapter adapter;
 
@@ -39,6 +44,7 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
         View view = View.inflate(context, R.layout.fragment_video_show, null);
         ButterKnife.inject(this, view);
         pageName.setText(getResources().getString(R.string.videoshow));
+        backBtn.setVisibility(View.INVISIBLE);
         /*设置recycleview和空布局*/
         setPullToRefreshRecyclerViewAndEmptyView();
         return view;
@@ -77,7 +83,7 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
 
             @Override
             public void convert(ViewHolder holder, String s, final int position) {
-                SimpleDraweeView sd=holder.getView(R.id.headImage);
+                SimpleDraweeView sd = holder.getView(R.id.headImage);
                 sd.setImageURI(Uri.parse("https://pic4.zhimg.com/03b2d57be62b30f158f48f388c8f3f33_b.png"));
                 //设置文本信息
 //                holder.setText(R.id.textView, s);
@@ -178,6 +184,14 @@ public class VideoShowFragment extends BaseFragment implements PullToRefreshList
 
             }
         }, 3000);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.inject(this, rootView);
+        return rootView;
     }
 }
 
