@@ -29,10 +29,6 @@ import butterknife.InjectView;
  */
 
 public class UserfulChooseFragment extends BaseFragment implements PullToRefreshListener {
-    @InjectView(R.id.S_viewPager)
-    ViewPager SViewPager;
-    @InjectView(R.id.ll_dots)
-    LinearLayout llDots;
     @InjectView(R.id.rl_beautiful_girl)
     PullToRefreshRecyclerView rlBeautifulGirl;
     private ModeAdapter adapter;
@@ -40,15 +36,19 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
     private int i = 0;
     private StartRoll<String> stringStartRoll;
     private ArrayList<String> dataBeens = new ArrayList<>();
+    private ViewPager SViewPager;
+    private LinearLayout llDots;
 
     @Override
     protected View initView() {
         View view = View.inflate(context, R.layout.fragment_user_choose, null);
         ButterKnife.inject(this, view);
-      /*  //添加HeaderView
-        View headView = View.inflate(context, R.layout.layout_head_view, null);
+        //添加HeaderView
+        View headView = View.inflate(context, R.layout.user_choose_head_view, null);
+        SViewPager = headView.findViewById(R.id.S_viewPager);
+        llDots = headView.findViewById(R.id.ll_dots);
         //头布局中的子控件设置点击事件
-        LinearLayout  rl1 = (LinearLayout) headView.findViewById(R.id.rl_name1);
+       /* LinearLayout  rl1 = (LinearLayout) headView.findViewById(R.id.rl_name1);
         LinearLayout  rl2 = (LinearLayout) headView.findViewById(R.id.rl_name2);
         rl1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +61,11 @@ public class UserfulChooseFragment extends BaseFragment implements PullToRefresh
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(),"rl2",Toast.LENGTH_SHORT).show();
-                 *//*跳转到通讯录列表界面*//*
+                 跳转到通讯录列表界面
                 SessionHelper.startP2PSession(getContext(), "13938217043");
             }
-        });
-        rlBeautifulGirl.addHeaderView(headView);*/
+        });*/
+        rlBeautifulGirl.addHeaderView(headView);
         //设置EmptyView（没有数据时的默认布局）
         View emptyView = View.inflate(context, R.layout.layout_empty_view, null);
         emptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
