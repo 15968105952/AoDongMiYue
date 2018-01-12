@@ -33,7 +33,8 @@ public class CardSlidePanel extends ViewGroup {
     private int allHeight = 0; // 面板的高度
     private int childWith = 0; // 每一个子View对应的宽度
 
-    private static final float SCALE_STEP = 0.08f; // view叠加缩放的步长
+//    private static final float SCALE_STEP = 0.08f; // view叠加缩放的步长
+    private static final float SCALE_STEP = 0.06f; // view叠加缩放的步长
     private static final int MAX_SLIDE_DISTANCE_LINKAGE = 400; // 水平距离+垂直距离
     // 超过这个值
     // 则下一层view完成向上一层view的过渡
@@ -314,8 +315,8 @@ public class CardSlidePanel extends ViewGroup {
         float scale = initScale + (nextScale - initScale) * rate;
 
         View ajustView = viewList.get(changeIndex + index);
-        ajustView.findViewById(R.id.card_dislike_icon).setAlpha(0);
-        ajustView.findViewById(R.id.card_like_icon).setAlpha(0);
+//        ajustView.findViewById(R.id.card_dislike_icon).setAlpha(0);
+//        ajustView.findViewById(R.id.card_like_icon).setAlpha(0);
         ajustView.offsetTopAndBottom(offset - ajustView.getTop()
                 + initCenterViewY);
         ajustView.setScaleX(scale);

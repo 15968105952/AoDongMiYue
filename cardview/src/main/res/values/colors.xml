@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="tab_unchecked_color">#ffffff</color>
+    <color name="color_upload_fail">#f05b60</color>
+    <color name="is_or_not_online_color">#20000000</color>
+    <color name="color_black_333333">#333333</color>
 </resources>

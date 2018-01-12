@@ -7,8 +7,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 /**
  * 卡片View项
  * @author xmuSistone
@@ -33,20 +31,21 @@ public class CardItemView extends LinearLayout {
 
     public CardItemView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        inflate(context, R.layout.card_item, this);
+        inflate(context, R.layout.activity_kuai_yue_item, this);
         imageView = (ImageView) findViewById(R.id.card_image_view);
+      /*  imageView = (ImageView) findViewById(R.id.card_image_view);
         userNameTv = (TextView) findViewById(R.id.card_user_name);
         imageNumTv = (TextView) findViewById(R.id.card_pic_num);
         likeNumTv = (TextView) findViewById(R.id.card_like);
         likeIcon = (ImageView) findViewById(R.id.card_like_icon);
-        dislikeIcon = (ImageView) findViewById(R.id.card_dislike_icon);
+        dislikeIcon = (ImageView) findViewById(R.id.card_dislike_icon);*/
     }
 
     public void fillData(CardDataItem itemData) {
-        ImageLoader.getInstance().displayImage(itemData.imagePath, imageView);
+      /*  ImageLoader.getInstance().displayImage(itemData.imagePath, imageView);
         userNameTv.setText(itemData.userName);
         imageNumTv.setText(itemData.imageNum + "");
-        likeNumTv.setText(itemData.likeNum + "");
+        likeNumTv.setText(itemData.likeNum + "");*/
     }
 
 

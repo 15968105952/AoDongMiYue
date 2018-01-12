@@ -3,19 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card="http://schemas.android.com/apk/res-auto"
-    android:background="#fff"
-    android:orientation="vertical">
-
-
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        >
 
         <com.dalong.carview.CardSlidePanel
             android:id="@+id/image_slide_panel"
             android:layout_width="fill_parent"
             card:bottomMarginTop="50dp"
             card:yOffsetStep="20dp"
+            android:layout_centerHorizontal="true"
             android:layout_height="fill_parent" >
 
             <LinearLayout

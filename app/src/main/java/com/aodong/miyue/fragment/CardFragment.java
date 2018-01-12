@@ -53,7 +53,7 @@ public class CardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(com.dalong.carview.R.layout.card_layout, null);
+        View rootView = inflater.inflate(R.layout.card_layout, null);
         initView(rootView);
         return rootView;
     }
@@ -75,7 +75,7 @@ public class CardFragment extends Fragment {
             public void onShow(View cardView,int index) {
                 i=index;
 //             cardView.findViewById(R.id.card_like_icon).setAlpha(0);
-                cardView.findViewById(R.id.card_dislike_icon).setAlpha(0);
+//                cardView.findViewById(R.id.card_dislike_icon).setAlpha(0);
                 Log.d("CardFragment", "正在显示-" + dataList.get(index).userName);
             }
 
@@ -103,7 +103,7 @@ public class CardFragment extends Fragment {
             @Override
             public void onViewPosition(View changedView,float dx, float dy) {
 //                changedView.findViewById(R.id.card_like_icon).setAlpha(dx);
-                changedView.findViewById(R.id.card_dislike_icon).setAlpha(dy);
+//                changedView.findViewById(R.id.card_dislike_icon).setAlpha(dy);
             }
         };
         slidePanel.setCardSwitchListener(cardSwitchListener);

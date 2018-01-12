@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="nickname">15sp</dimen>
+    <dimen name="left6">6dp</dimen>
+    <dimen name="label">12sp</dimen>
+    <dimen name="label10">10sp</dimen>
 </resources>
