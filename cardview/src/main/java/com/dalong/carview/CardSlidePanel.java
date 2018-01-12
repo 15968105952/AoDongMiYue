@@ -34,6 +34,7 @@ public class CardSlidePanel extends ViewGroup {
     private int childWith = 0; // 每一个子View对应的宽度
 
 //    private static final float SCALE_STEP = 0.08f; // view叠加缩放的步长
+    /*修改叠加的view的显示的部分的高度*/
     private static final float SCALE_STEP = 0.06f; // view叠加缩放的步长
     private static final int MAX_SLIDE_DISTANCE_LINKAGE = 400; // 水平距离+垂直距离
     // 超过这个值
@@ -122,7 +123,8 @@ public class CardSlidePanel extends ViewGroup {
             } else {
                 CardItemView viewItem = (CardItemView) childView;
                 viewItem.setTag(i + 1);
-                viewItem.imageView.setOnClickListener(btnListener);
+                /*item的点击事件*/
+//                viewItem.imageView.setOnClickListener(btnListener);
                 viewList.add(viewItem);
             }
         }

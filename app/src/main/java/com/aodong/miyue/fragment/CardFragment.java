@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.aodong.miyue.R;
 import com.aodong.miyue.activity.KuaiYueActivity;
+import com.aodong.miyue.wanyiyun.activity.VideoActivity;
 import com.dalong.carview.CardDataItem;
 import com.dalong.carview.CardSlidePanel;
 
@@ -23,7 +24,6 @@ import java.util.List;
 
 /**
  * 卡片Fragment
- *
  */
 @SuppressLint({"HandlerLeak", "NewApi", "InflateParams"})
 public class CardFragment extends Fragment {
@@ -49,7 +49,8 @@ public class CardFragment extends Fragment {
 
     private List<CardDataItem> dataList = new ArrayList<CardDataItem>();
     public CardSlidePanel slidePanel;
-   int i=0;
+    int i = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,36 +62,37 @@ public class CardFragment extends Fragment {
     private void initView(View rootView) {
         slidePanel = (CardSlidePanel) rootView
                 .findViewById(com.dalong.carview.R.id.image_slide_panel);
-       Button cardrightbtn= slidePanel.findViewById(R.id.card_right_btn);
-       cardrightbtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
+        Button cardrightbtn = slidePanel.findViewById(R.id.card_right_btn);
+        cardrightbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 //               Toast.makeText(getActivity(),dataList.get(i).userName,Toast.LENGTH_SHORT);
-               Log.d("CardFragment", "正在显示mazhuang-" + dataList.get(i).userName);
-           }
-       });
+                Log.d("CardFragment", "正在显示mazhuang-" + dataList.get(i).userName);
+                VideoActivity.start(getContext(), "13938217043");
+            }
+        });
         cardSwitchListener = new CardSlidePanel.CardSwitchListener() {
 
             @Override
-            public void onShow(View cardView,int index) {
-                i=index;
+            public void onShow(View cardView, int index) {
+                i = index;
 //             cardView.findViewById(R.id.card_like_icon).setAlpha(0);
 //                cardView.findViewById(R.id.card_dislike_icon).setAlpha(0);
                 Log.d("CardFragment", "正在显示-" + dataList.get(index).userName);
             }
 
             @Override
-            public void onCardVanish(View changedView,int index, int type) {
+            public void onCardVanish(View changedView, int index, int type) {
                 Log.d("CardFragment", "正在消失-" + dataList.get(index).userName + " 消失type=" + type);
-                switch (type){
+                switch (type) {
                     case 0:
-                        Log.d("CardFragment", "不喜欢" );
-                        setViewPressed(getActivity().findViewById(R.id.card_left_btn),200);
+                        Log.d("CardFragment", "不喜欢");
+                        setViewPressed(getActivity().findViewById(R.id.card_left_btn), 200);
                         break;
                     case 1:
-                        Log.d("CardFragment", "喜欢" );
+                        Log.d("CardFragment", "喜欢");
 //                        setViewPressed(getActivity().findViewById(R.id.card_right_btn),200);
-                       Toast.makeText(getActivity(),dataList.get(index).userName,Toast.LENGTH_SHORT);
+                        Toast.makeText(getActivity(), dataList.get(index).userName, Toast.LENGTH_SHORT);
                         break;
                 }
             }
@@ -101,7 +103,7 @@ public class CardFragment extends Fragment {
             }
 
             @Override
-            public void onViewPosition(View changedView,float dx, float dy) {
+            public void onViewPosition(View changedView, float dx, float dy) {
 //                changedView.findViewById(R.id.card_like_icon).setAlpha(dx);
 //                changedView.findViewById(R.id.card_dislike_icon).setAlpha(dy);
             }
@@ -117,14 +119,14 @@ public class CardFragment extends Fragment {
         });
     }
 
-    public  void setViewPressed(final View view,long time){
+    public void setViewPressed(final View view, long time) {
         view.setPressed(true);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 view.setPressed(false);
             }
-        },time);
+        }, time);
 
     }
 
@@ -153,15 +155,16 @@ public class CardFragment extends Fragment {
         removeIgnoredView(view.findViewById(R.id.card_bottom_layout));
     }
 
-    public void addIgnoredView(View view){
-        KuaiYueActivity main=(KuaiYueActivity)getActivity();
-        if(view!=null){
+    public void addIgnoredView(View view) {
+        KuaiYueActivity main = (KuaiYueActivity) getActivity();
+        if (view != null) {
 //            main.addIgnoredView(slidePanel);
         }
     }
-    public void removeIgnoredView(View view){
-        KuaiYueActivity main=(KuaiYueActivity)getActivity();
-        if(view!=null){
+
+    public void removeIgnoredView(View view) {
+        KuaiYueActivity main = (KuaiYueActivity) getActivity();
+        if (view != null) {
 //            main.removeIgnoredView(slidePanel);
         }
     }
