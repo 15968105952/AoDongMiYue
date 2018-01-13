@@ -159,5 +159,6 @@
     <color name="is_not_online">#F7573D</color>
     <color name="color_is_man">#668FFF</color>
     <color name="color_gray">#f2f2f2</color>
+    <color name="gray">#f2f2f2</color>
 
 </resources>

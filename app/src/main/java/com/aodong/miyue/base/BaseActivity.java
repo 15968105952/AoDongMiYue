@@ -18,7 +18,6 @@ public class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mImmersionBar = ImmersionBar.with(this).statusBarDarkFont(true);
         mImmersionBar.init();           //所有子类都将继承这些相同的属性

@@ -83,7 +83,9 @@
         </activity>
         <!-- 网易云 -->
         <activity android:name=".wanyiyun.activity.WatchSnapChatPictureActivity" />
-        <activity android:name=".wanyiyun.activity.VideoActivity" />
+        <activity
+            android:name=".wanyiyun.activity.VideoActivity"
+            android:screenOrientation="portrait" />
         <!-- 高德地图 -->
         <activity android:name=".wanyiyun.activity.LocationAmapActivity" />
         <activity android:name=".wanyiyun.activity.NavigationAmapActivity" />

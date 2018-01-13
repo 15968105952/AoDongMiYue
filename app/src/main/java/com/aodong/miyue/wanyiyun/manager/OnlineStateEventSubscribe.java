@@ -3,6 +3,7 @@ package com.aodong.miyue.wanyiyun.manager;
 import android.os.Handler;
 
 import com.aodong.miyue.wanyiyun.DemoCache;
+import com.aodong.miyue.wanyiyun.event.OnlineStateEventCache;
 import com.aodong.miyue.wanyiyun.preferences.UserPreferences;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.common.framework.infra.Handlers;
@@ -65,7 +66,7 @@ public class OnlineStateEventSubscribe {
         initSubsFinished = false;
 
         // 重置事件、订阅关系缓存
-//        OnlineStateEventCache.resetCache();
+        OnlineStateEventCache.resetCache();
 
         // 重置订阅有效期管理
         SubscribeExpiryManager.reset();
@@ -137,7 +138,7 @@ public class OnlineStateEventSubscribe {
         eventSubscribeRequest.setExpiry(expiry);
         eventSubscribeRequest.setSyncCurrentValue(true);
 
-//        OnlineStateEventCache.addSubsAccounts(accounts);
+        OnlineStateEventCache.addSubsAccounts(accounts);
 
         updateLastSubsTime();
         NIMClient.getService(EventSubscribeService.class).subscribeEvent(eventSubscribeRequest).setCallback(new RequestCallbackWrapper<List<String>>() {
@@ -149,10 +150,10 @@ public class OnlineStateEventSubscribe {
                     SubscribeExpiryManager.subscribeSuccess();
                     if (result != null) {
                         // 部分订阅失败的账号。。。
-//                        OnlineStateEventCache.removeSubsAccounts(result);
+                        OnlineStateEventCache.removeSubsAccounts(result);
                     }
                 } else {
-//                    OnlineStateEventCache.removeSubsAccounts(accounts);
+                    OnlineStateEventCache.removeSubsAccounts(accounts);
                 }
             }
         });
@@ -184,8 +185,8 @@ public class OnlineStateEventSubscribe {
         }
         LogUtil.ui("unSubscribe OnlineStateEvent " + accounts);
 
-        /*OnlineStateEventCache.removeSubsAccounts(accounts);
-        OnlineStateEventCache.removeOnlineState(accounts);*/
+        OnlineStateEventCache.removeSubsAccounts(accounts);
+        OnlineStateEventCache.removeOnlineState(accounts);
 
         EventSubscribeRequest eventSubscribeRequest = new EventSubscribeRequest();
         eventSubscribeRequest.setEventType(NimOnlineStateEvent.EVENT_TYPE);

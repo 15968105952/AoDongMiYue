@@ -1,67 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp">
-
-            <TextView
-                android:id="@+id/tv_editor"
+            android:layout_height="288dp"
+            android:background="@drawable/pic2"
+            >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="218dp"
+           android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:text="编辑"
-                android:textColor="@color/marker_text_bg"
-                android:textSize="@dimen/label" />
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/sd_head"
-                android:layout_width="62dp"
-                android:layout_height="62dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/headimage_init" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="125dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                >
                 <TextView
                     android:id="@+id/tv_nick_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="昵称:哈哈"
-                    android:textColor="@color/marker_text_bg" />
-
-                <TextView
-                    android:id="@+id/tv_sex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="性别：男"
-                    android:textColor="@color/marker_text_bg" />
-
-                <TextView
-                    android:id="@+id/tv_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="年龄：23"
-                    android:textColor="@color/marker_text_bg" />
+                    android:textSize="@dimen/label15"
+                    android:textColor="@color/white"
+                    android:text="@string/nickname"
+                    />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,8 +91,12 @@
                 android:layout_marginTop="190dp"
                 android:gravity="center"
                 android:text="个性签名：别低头，皇冠会掉" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
         </RelativeLayout>
-
         <View style="@style/cut_off_rule"></View>
 
         <LinearLayout

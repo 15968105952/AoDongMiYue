@@ -7,7 +7,14 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.aodong.miyue.R;
 import com.aodong.miyue.wanyiyun.DemoCache;
+import com.aodong.miyue.wanyiyun.event.EventFilter;
+import com.aodong.miyue.wanyiyun.event.NetStateCode;
+import com.aodong.miyue.wanyiyun.event.OnlineState;
+import com.aodong.miyue.wanyiyun.event.OnlineStateCode;
+import com.aodong.miyue.wanyiyun.event.OnlineStateEventCache;
+import com.aodong.miyue.wanyiyun.event.OnlineStateEventConfig;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.model.contact.ContactChangedObserver;
 import com.netease.nim.uikit.common.util.log.LogUtil;
@@ -18,6 +25,8 @@ import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.ResponseCode;
 import com.netease.nimlib.sdk.StatusCode;
 import com.netease.nimlib.sdk.auth.AuthServiceObserver;
+import com.netease.nimlib.sdk.auth.ClientType;
+import com.netease.nimlib.sdk.event.EventSubscribeService;
 import com.netease.nimlib.sdk.event.EventSubscribeServiceObserver;
 import com.netease.nimlib.sdk.event.model.Event;
 import com.netease.nimlib.sdk.event.model.NimOnlineStateEvent;
@@ -26,10 +35,11 @@ import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-
 
 
 /**
@@ -74,9 +84,9 @@ public class OnlineStateEventManager {
             }
             List<String> subs = new ArrayList<>();
             for (String account : accounts) {
-                /*if (!OnlineStateEventCache.hasSubscribed(account)) {
+                if (!OnlineStateEventCache.hasSubscribed(account)) {
                     subs.add(account);
-                }*/
+                }
             }
             LogUtil.ui("added or updated friends subscribe online state " + subs);
             OnlineStateEventSubscribe.subscribeOnlineStateEvent(subs, OnlineStateEventSubscribe.SUBSCRIBE_EXPIRY);
@@ -185,7 +195,7 @@ public class OnlineStateEventManager {
             @Override
             public void onEvent(List<Event> events) {
                 // 过滤掉旧的事件
-//                events = EventFilter.getInstance().filterOlderEvent(events);
+                events = EventFilter.getInstance().filterOlderEvent(events);
                 if (events == null) {
                     return;
                 }
@@ -203,13 +213,12 @@ public class OnlineStateEventManager {
         }, register);
     }
 
-    /**
+   /* *
      * 从事件中获取该账户的多端在线状态信息
      *
      * @param event
-     * @return
-     */
-   /* private static Map<Integer, OnlineState> getOnlineStateFromEvent(Event event) {
+     * @return*/
+    private static Map<Integer, OnlineState> getOnlineStateFromEvent(Event event) {
         if (!NimOnlineStateEvent.isOnlineStateEvent(event)) {
             return null;
         }
@@ -229,7 +238,7 @@ public class OnlineStateEventManager {
         }
 
         return onlineStates;
-    }*/
+    }
 
     /**
      * 构建一个在线状态事件
@@ -244,7 +253,7 @@ public class OnlineStateEventManager {
         Event event = new Event(NimOnlineStateEvent.EVENT_TYPE, NimOnlineStateEvent.MODIFY_EVENT_CONFIG, expiry);
         event.setSyncSelfEnable(syncSelfEnable);
         event.setBroadcastOnlineOnly(broadcastOnlineOnly);
-//        event.setConfig(OnlineStateEventConfig.buildConfig(netState, onlineState));
+        event.setConfig(OnlineStateEventConfig.buildConfig(netState, onlineState));
         return event;
     }
 
@@ -259,10 +268,10 @@ public class OnlineStateEventManager {
         for (Event event : events) {
             if (NimOnlineStateEvent.isOnlineStateEvent(event)) {
                 // 获取优先级最高的在线客户端的状态
-//                OnlineState state = getDisplayOnlineState(event);
+                OnlineState state = getDisplayOnlineState(event);
                 changed.add(event.getPublisherAccount());
                 // 将事件缓存
-//                OnlineStateEventCache.cacheOnlineState(event.getPublisherAccount(), state);
+                OnlineStateEventCache.cacheOnlineState(event.getPublisherAccount(), state);
                 LogUtil.ui("received and cached onlineState of account " + event.getPublisherAccount());
             }
         }
@@ -284,9 +293,9 @@ public class OnlineStateEventManager {
             return;
         }
         pubNetState = netState;
-        /*Event event = buildOnlineStateEvent(netState, OnlineStateCode.Online.getValue(), true, false, EVENT_EXPIRY);
+        Event event = buildOnlineStateEvent(netState, OnlineStateCode.Online.getValue(), true, false, EVENT_EXPIRY);
         LogUtil.ui("publish online event value = " + event.getEventValue() + " config = " + event.getConfig());
-        NIMClient.getService(EventSubscribeService.class).publishEvent(event);*/
+        NIMClient.getService(EventSubscribeService.class).publishEvent(event);
     }
 
     // 获取网络类型
@@ -294,10 +303,9 @@ public class OnlineStateEventManager {
         return NetworkUtil.getNetworkTypeForLink(context);
     }
 
-    /**
-     * 多端在线时展示规则 PC > Mac > IOS/Android > Web
-     */
-   /* public static OnlineState getDisplayOnlineState(Event event) {
+   /* *
+     * 多端在线时展示规则 PC > Mac > IOS/Android > Web*/
+    public static OnlineState getDisplayOnlineState(Event event) {
 
         // 获取多端的在线信息
         Map<Integer, OnlineState> multiClientStates = getOnlineStateFromEvent(event);
@@ -321,19 +329,83 @@ public class OnlineStateEventManager {
             return result;
         }
         return null;
-    }*/
+    }
 
-   /* private static boolean isOnline(OnlineState state) {
+    private static boolean isOnline(OnlineState state) {
         return state != null && state.getOnlineState() != (OnlineStateCode.Offline);
-    }*/
+    }
 
-  /*  private static boolean validNetType(OnlineState state) {
+    private static boolean validNetType(OnlineState state) {
         if (state == null) {
             return false;
         }
         NetStateCode netState = state.getNetState();
         return netState != null && netState != NetStateCode.Unkown;
-    }*/
+    }
+
+    private static String getMobileOnlineClientString(Context context, OnlineState state, boolean ios, boolean simple) {
+        String result;
+        String client = ios ? context.getString(R.string.client_ios) : context.getString(R.string.client_aos);
+        if (!validNetType(state)) {
+            result = client + context.getString(R.string.on_line);
+        } else {
+            if (simple) {
+                // 简单展示
+                result = getDisplayNetState(state.getNetState()) + context.getString(R.string.on_line);
+            } else {
+                // 详细展示
+                result = client + " - " + getDisplayNetState(state.getNetState()) + context.getString(R.string.on_line);
+            }
+        }
+        return result;
+    }
+    private static String getDisplayNetState(NetStateCode netStateCode) {
+        if (netStateCode == null || netStateCode == NetStateCode.Unkown) {
+            return UNKNOWN;
+        }
+        if (netStateCode == NetStateCode._2G) {
+            return NET_TYPE_2G;
+        } else if (netStateCode == NetStateCode._3G) {
+            return NET_TYPE_3G;
+        } else if (netStateCode == NetStateCode._4G) {
+            return NET_TYPE_4G;
+        } else {
+            return NET_TYPE_WIFI;
+        }
+    }
+
+    /**
+     * 检查是否已经订阅过
+     *
+     * @param account
+     */
+    public static void checkSubscribe(String account) {
+        if (!enable) {
+            return;
+        }
+        if (OnlineStateEventSubscribe.subscribeFilter(account)) {
+            return;
+        }
+        // 未曾订阅过
+        if (!OnlineStateEventCache.hasSubscribed(account)) {
+            List<String> accounts = new ArrayList<>(1);
+            accounts.add(account);
+            LogUtil.ui("display online state but not subscribe " + account);
+            OnlineStateEventSubscribe.subscribeOnlineStateEvent(accounts, OnlineStateEventSubscribe.SUBSCRIBE_EXPIRY);
+        }
+    }
+
+    public static boolean isEnable() {
+        return enable;
+    }
+
+    /**
+     * 允许在线状态事件,开发者开通在线状态后修改此处直接返回true
+     */
+    private static boolean enableOnlineStateEvent() {
+        String packageName = DemoCache.getContext().getPackageName();
+        return enable = (packageName != null && packageName.equals("com.netease.nim.live"));
+    }
 
     /**
      * 在线状态显示文案
@@ -343,7 +415,7 @@ public class OnlineStateEventManager {
      * @param simple
      * @return
      */
-   /* public static String getOnlineClientContent(Context context, OnlineState state, boolean simple) {
+    public static String getOnlineClientContent(Context context, OnlineState state, boolean simple) {
         if (!enable) {
             return null;
         }
@@ -377,70 +449,5 @@ public class OnlineStateEventManager {
                 break;
         }
         return result;
-    }*/
-
-    /*private static String getMobileOnlineClientString(Context context, OnlineState state, boolean ios, boolean simple) {
-        String result;
-        String client = ios ? context.getString(R.string.client_ios) : context.getString(R.string.client_aos);
-        if (!validNetType(state)) {
-            result = client + context.getString(R.string.on_line);
-        } else {
-            if (simple) {
-                // 简单展示
-                result = getDisplayNetState(state.getNetState()) + context.getString(R.string.on_line);
-            } else {
-                // 详细展示
-                result = client + " - " + getDisplayNetState(state.getNetState()) + context.getString(R.string.on_line);
-            }
-        }
-        return result;
-    }
-*/
-   /* private static String getDisplayNetState(NetStateCode netStateCode) {
-        if (netStateCode == null || netStateCode == NetStateCode.Unkown) {
-            return UNKNOWN;
-        }
-        if (netStateCode == NetStateCode._2G) {
-            return NET_TYPE_2G;
-        } else if (netStateCode == NetStateCode._3G) {
-            return NET_TYPE_3G;
-        } else if (netStateCode == NetStateCode._4G) {
-            return NET_TYPE_4G;
-        } else {
-            return NET_TYPE_WIFI;
-        }
-    }*/
-
-    /**
-     * 检查是否已经订阅过
-     *
-     * @param account
-     */
-    public static void checkSubscribe(String account) {
-        if (!enable) {
-            return;
-        }
-        if (OnlineStateEventSubscribe.subscribeFilter(account)) {
-            return;
-        }
-       /* // 未曾订阅过
-        if (!OnlineStateEventCache.hasSubscribed(account)) {
-            List<String> accounts = new ArrayList<>(1);
-            accounts.add(account);
-            LogUtil.ui("display online state but not subscribe " + account);
-            OnlineStateEventSubscribe.subscribeOnlineStateEvent(accounts, OnlineStateEventSubscribe.SUBSCRIBE_EXPIRY);
-        }*/
-    }
-
-    public static boolean isEnable() {
-        return enable;
-    }
-
-    /**
-     * 允许在线状态事件,开发者开通在线状态后修改此处直接返回true
-     */
-    private static boolean enableOnlineStateEvent() {
-        String packageName = DemoCache.getContext().getPackageName();
-        return enable = (packageName != null && packageName.equals("com.netease.nim.live"));
     }
 }

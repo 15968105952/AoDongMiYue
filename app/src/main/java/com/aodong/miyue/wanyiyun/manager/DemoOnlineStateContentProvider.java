@@ -3,6 +3,8 @@ package com.aodong.miyue.wanyiyun.manager;
 import android.text.TextUtils;
 
 import com.aodong.miyue.wanyiyun.DemoCache;
+import com.aodong.miyue.wanyiyun.event.OnlineState;
+import com.aodong.miyue.wanyiyun.event.OnlineStateEventCache;
 import com.netease.nim.uikit.api.model.main.OnlineStateContentProvider;
 
 
@@ -40,8 +42,7 @@ public class DemoOnlineStateContentProvider implements OnlineStateContentProvide
         // 检查是否订阅过
         OnlineStateEventManager.checkSubscribe(account);
 
-//        OnlineState onlineState = OnlineStateEventCache.getOnlineState(account);
-//        return OnlineStateEventManager.getOnlineClientContent(DemoCache.getContext(), onlineState, simple);
-        return null;
+        OnlineState onlineState = OnlineStateEventCache.getOnlineState(account);
+        return OnlineStateEventManager.getOnlineClientContent(DemoCache.getContext(), onlineState, simple);
     }
 }

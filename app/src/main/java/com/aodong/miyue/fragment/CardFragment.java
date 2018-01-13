@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.aodong.miyue.R;
 import com.aodong.miyue.activity.KuaiYueActivity;
@@ -92,7 +91,7 @@ public class CardFragment extends Fragment {
                     case 1:
                         Log.d("CardFragment", "喜欢");
 //                        setViewPressed(getActivity().findViewById(R.id.card_right_btn),200);
-                        Toast.makeText(getActivity(), dataList.get(index).userName, Toast.LENGTH_SHORT);
+//                        Toast.makeText(getActivity(), dataList.get(index).userName, Toast.LENGTH_SHORT);
                         break;
                 }
             }

@@ -39,7 +39,7 @@
             />
         <LinearLayout
             android:id="@+id/ll_sex"
-            android:layout_marginTop="155dp"
+            android:layout_marginTop="156dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"

@@ -35,7 +35,7 @@ import java.util.Map;
  * 用于初始化时，注册全局的广播、云信观察者等等云信相关业务
  */
 
-public class NIMInitManager {
+public class  NIMInitManager {
 
     private static final String TAG = "NIMInitManager";
 

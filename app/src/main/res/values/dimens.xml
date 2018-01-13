@@ -93,4 +93,5 @@
     <dimen name="left6">6dp</dimen>
     <dimen name="nickname">15sp</dimen>
     <dimen name="label10">10sp</dimen>
+    <dimen name="label15">15sp</dimen>
 </resources>

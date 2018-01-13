@@ -89,6 +89,8 @@ public class MainActivity extends BaseActivity implements ReminderManager.Unread
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mImmersionBar = ImmersionBar.with(this).statusBarDarkFont(true);
+        mImmersionBar.init();           //所有子类都将继承这些相同的属性
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         initViews();
