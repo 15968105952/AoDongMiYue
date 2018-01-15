@@ -1,349 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <LinearLayout
+    android:layout_height="match_parent">
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="288dp"
-            android:background="@drawable/pic2"
-            >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="218dp"
-           android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:id="@+id/tv_nick_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/label15"
-                    android:textColor="@color/white"
-                    android:text="@string/nickname"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ID:123456" />
-
-                <TextView
-                    android:id="@+id/tv_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="所在地" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="170dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_concern"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="关注|100" />
-
-                <TextView
-                    android:id="@+id/tv_fans"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="粉丝|100" />
-
-                <TextView
-                    android:id="@+id/tv_black_list"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:text="黑名单|100" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_Personality_signature"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="190dp"
-                android:gravity="center"
-                android:text="个性签名：别低头，皇冠会掉" />
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-        </LinearLayout>
-        </RelativeLayout>
-        <View style="@style/cut_off_rule"></View>
+        android:background="@color/gray">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#F5F5F9"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="288dp"
+                android:background="@drawable/pic2">
+                <include layout="@layout/head_toolbar_my"></include>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="218dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_nick_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nickname"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/label15" />
+
+                        <ImageView
+                            android:layout_width="11dp"
+                            android:layout_height="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/icon_vip2"
+
+                            />
+
+                        <LinearLayout
+                            android:id="@+id/ll_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/is_or_not_man_background"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/iv_sex"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="2dp"
+                                android:src="@drawable/icon_woman" />
+
+                            <TextView
+                                android:id="@+id/tv_age"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginBottom="1dp"
+                                android:text="20"
+                                android:textColor="@color/tab_unchecked_color"
+                                android:textSize="@dimen/label10"
+
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_concern"
+                            style="@style/my_concern"
+                            android:text="@string/concern" />
+
+                        <TextView
+                            android:id="@+id/tv_concern_count"
+                            style="@style/my_concern_count"
+                            android:text="123" />
+
+                        <View style="@style/my_vertical_bar"></View>
+
+                        <TextView
+                            android:id="@+id/tv_fans"
+                            style="@style/my_concern"
+                            android:text="@string/fans" />
+
+                        <TextView
+                            android:id="@+id/tv_fans_count"
+                            style="@style/my_concern_count"
+                            android:text="123" />
+
+                        <View style="@style/my_vertical_bar"></View>
+
+                        <TextView
+                            android:id="@+id/tv_black_list"
+                            style="@style/my_concern"
+                            android:text="@string/black_list" />
+
+                        <TextView
+                            android:id="@+id/tv_black_list_count"
+                            style="@style/my_concern_count"
+                            android:text="123" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_Personality_signature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/tv_Personality_signature"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
 
                 <ImageView
                     android:id="@+id/iv1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/library_banner" />
+                    style="@style/my_four_image"
+                    android:background="@drawable/pic2" />
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/iv2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/library_banner" />
+                    style="@style/my_four_image"
+                    android:background="@drawable/pic3" />
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/iv3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/library_banner" />
+                    style="@style/my_four_image"
+                    android:background="@drawable/pic4" />
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/iv4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/library_banner" />
+                    style="@style/my_four_image"
+                    android:background="@drawable/pic5" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+            <ImageView
+                android:id="@+id/iv_disturb"
+                android:layout_width="22dp"
+                android:layout_height="23dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/icon_vip"
+                />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40dp"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="2dp"
+                       android:textColor="@color/color_black_333333"
+                       android:textSize="@dimen/text_size_15"
+                       android:text="@string/do_not_disturb"
+                       />
+
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/text_size_9"
+                    android:text="@string/do_not_disturb_info"
+                    />
+
+                </LinearLayout>
+
+
+                    <com.netease.nim.uikit.common.ui.widget.SwitchButton
+                        android:id="@+id/setting_item_toggle"
+                        android:layout_width="58dip"
+                        android:layout_height="36.67dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        />
 
             </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="143dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_Charge_signature"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        style="@style/my_rl_Charge_signature_image"
+                        android:background="@drawable/btn_movgift" />
+
+                    <TextView
+                        style="@style/my_rl_Charge_signature_text"
+                        android:text="@string/charge_signature" />
+
+                    <ImageView
+                        style="@style/my_rl_Charge_signature_image_right"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/row" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/cut_off_rule"
+                    android:layout_marginLeft="14dp"></View>
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_video_recording"
+                    style="@style/my_rl_Charge_signature">
+
+                    <ImageView
+                        style="@style/my_rl_Charge_signature_image"
+                        android:src="@drawable/btn_movgift" />
+
+                    <TextView
+                        style="@style/my_rl_Charge_signature_text"
+                        android:text="@string/video_recording" />
+
+                    <ImageView
+                        style="@style/my_rl_Charge_signature_image_right"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/row" />
+                </RelativeLayout>
+
+                <View
+                    style="@style/cut_off_rule"
+                    android:layout_marginLeft="14dp"></View>
+
+                <RelativeLayout
+                    android:id="@+id/rl_balance"
+                    style="@style/my_rl_Charge_signature">
+
+                    <ImageView
+                        style="@style/my_rl_Charge_signature_image"
+                        android:src="@drawable/btn_movgift" />
+
+                    <TextView
+                        style="@style/my_rl_Charge_signature_text"
+                        android:text="@string/balance" />
+
+                    <ImageView
+                        style="@style/my_rl_Charge_signature_image_right"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/row" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_video_auth"
+                style="@style/rl_video_auth"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image"
+                    android:src="@drawable/icon_vip" />
+
+                <TextView
+                    style="@style/my_rl_Charge_signature_text"
+                    android:text="@string/video_auth" />
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image_right"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/row" />
+            </RelativeLayout>
+
+            <View style="@style/cut_off_rule"></View>
+
+            <RelativeLayout
+                android:id="@+id/rl_View_evaluation"
+                style="@style/rl_video_auth">
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image"
+                    android:src="@drawable/star_1" />
+
+                <TextView
+                    style="@style/my_rl_Charge_signature_text"
+                    android:text="@string/View_evaluation" />
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image_right"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/row" />
+            </RelativeLayout>
+
+            <View style="@style/cut_off_rule"></View>
+
+            <RelativeLayout
+                android:id="@+id/rl_online_service"
+                style="@style/rl_video_auth">
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image"
+                    android:src="@drawable/btn_movgift" />
+
+                <TextView
+                    style="@style/my_rl_Charge_signature_text"
+                    android:text="@string/service_online" />
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image_right"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/row" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_setting"
+                style="@style/rl_video_auth"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image"
+                    android:src="@drawable/btn_movgift" />
+
+                <TextView
+                    style="@style/my_rl_Charge_signature_text"
+                    android:text="@string/setting" />
+
+                <ImageView
+                    style="@style/my_rl_Charge_signature_image_right"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/row" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"></RelativeLayout>
         </LinearLayout>
-
-        <View style="@style/cut_off_rule"></View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"></LinearLayout>
-
-        <View style="@style/cut_off_rule"></View>
-
-        <RelativeLayout
-            android:id="@+id/rl_Charge_signature"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:src="@drawable/library_banner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="80dp"
-                android:gravity="center_vertical"
-                android:text="@string/charge_signature" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/row" />
-        </RelativeLayout>
-
-        <View style="@style/cut_off_rule"></View>
-
-        <RelativeLayout
-            android:id="@+id/rl_video_recording"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:src="@drawable/library_banner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="80dp"
-                android:gravity="center_vertical"
-                android:text="@string/video_recording" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/row" />
-        </RelativeLayout>
-
-        <View style="@style/cut_off_rule"></View>
-
-        <RelativeLayout
-            android:id="@+id/rl_balance"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:src="@drawable/library_banner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="80dp"
-                android:gravity="center_vertical"
-                android:text="@string/balance" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/row" />
-        </RelativeLayout>
-
-        <View style="@style/cut_off_rule"></View>
-
-        <RelativeLayout
-            android:id="@+id/rl_video_auth"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:src="@drawable/library_banner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="80dp"
-                android:gravity="center_vertical"
-                android:text="@string/video_auth" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/row" />
-        </RelativeLayout>
-
-        <View style="@style/cut_off_rule"></View>
-
-        <RelativeLayout
-            android:id="@+id/rl_setting"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:src="@drawable/library_banner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="80dp"
-                android:gravity="center_vertical"
-                android:text="@string/setting" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/row" />
-        </RelativeLayout>
-
-        <View style="@style/cut_off_rule"></View>
-
-        <RelativeLayout
-            android:id="@+id/rl_login_out"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:src="@drawable/library_banner" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="80dp"
-                android:gravity="center_vertical"
-                android:text="@string/login_out" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/row" />
-        </RelativeLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>

@@ -362,4 +362,12 @@
     <string name="i_know">我知道了</string>
     <string name="nickname_home_page">天线宝宝</string>
     <string name="is_on_line">在线</string>
+    <string name="me">我</string>
+    <string name="concern">关注</string>
+    <string name="fans">粉丝</string>
+    <string name="tv_Personality_signature">一起来聊啊~~~~~视频我哦~~~</string>
+    <string name="View_evaluation">查看评价</string>
+    <string name="service_online">在线客服</string>
+    <string name="do_not_disturb">免打扰模式</string>
+    <string name="do_not_disturb_info">你已经关闭免打扰模式，别人可以对你发起呼叫</string>
 </resources>

@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="tab_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -20,7 +21,7 @@
     <style name="cut_off_rule">
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:background">@color/tab_checked_bg</item>
+        <item name="android:background">@color/gray</item>
     </style>
 
     <!--宽高-->
@@ -40,6 +41,7 @@
         <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
         <item name="tabSelectedTextColor">?attr/colorAccent</item>
     </style>
+
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
@@ -85,5 +87,74 @@
         <item name="android:paddingRight">3dp</item>
         <item name="android:paddingTop">1dp</item>
         <item name="android:paddingBottom">1dp</item>
+    </style>
+    <!--我的界面关注字体-->
+    <style name="my_concern">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <!--我的界面关注字体-->
+    <style name="my_concern_count">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+    <!--我的界面竖杠-->
+    <style name="my_vertical_bar">
+        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginRight">17dp</item>
+    </style>
+    <!--我的界面中间图片尺寸-->
+    <style name="my_four_image">
+        <item name="android:layout_height">89dp</item>
+        <item name="android:layout_width">89dp</item>
+    </style>
+    <!--我的界面收费分割-->
+    <style name="my_rl_Charge_signature">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <!--我的界面收费图片-->
+    <style name="my_rl_Charge_signature_image">
+        <item name="android:layout_height">18dp</item>
+        <item name="android:layout_width">23dp</item>
+       <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">12dp</item>
+    </style>
+    <!--我的界面收费设置-->
+    <style name="my_rl_Charge_signature_text">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textColor">@color/color_black_333333</item>
+    </style>
+
+    <!--我的界面收费最右边图片-->
+    <style name="my_rl_Charge_signature_image_right">
+        <item name="android:layout_height">14dp</item>
+        <item name="android:layout_width">8dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+    <!--我的界面视频认证设置-->
+    <style name="rl_video_auth">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@color/white</item>
     </style>
 </resources>

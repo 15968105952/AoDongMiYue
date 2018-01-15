@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    >
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="16dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/back_icon"
+        />
+    <TextView
+        android:id="@+id/page_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:text="@string/me"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/text_size_11"
+        android:textStyle="bold"
+        android:text="@string/edit"
+        />
+</RelativeLayout>
